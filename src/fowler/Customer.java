@@ -6,12 +6,22 @@ class Customer {
     private final String name;
     private final ArrayList<Rental> rentals = new ArrayList<>();
 
+    /**
+     * Construct a new customer
+     *
+     * @param name the name of the customer
+     */
     public Customer(String name) {
         this.name = name;
     }
 
-    public void addRental(Rental arg) {
-        rentals.add(arg);
+    /**
+     * Add a rental to the customer
+     *
+     * @param rental the rental to add
+     */
+    public void addRental(Rental rental) {
+        rentals.add(rental);
     }
 
     /**
