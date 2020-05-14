@@ -4,14 +4,14 @@ import java.util.*;
 
 class Customer {
     private final String name;
-    private final Vector rentals = new Vector();
+    private final ArrayList<Rental> rentals = new ArrayList<>();
 
     public Customer(String newName) {
         name = newName;
     }
 
     public void addRental(Rental arg) {
-        rentals.addElement(arg);
+        rentals.add(arg);
     }
 
     public String getName() {
@@ -21,22 +21,20 @@ class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration enumRentals = rentals.elements();
         String result = "fowler.Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
-        while (enumRentals.hasMoreElements()) {
+        for (Rental rental : rentals) {
             double thisAmount = 0;
-            Rental each = (Rental) enumRentals.nextElement();
             //determine amounts for each line
-            thisAmount = amountFor(each);
+            thisAmount = amountFor(rental);
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
+            if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
                 frequentRenterPoints++;
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + thisAmount + "\n";
+            result += "\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + thisAmount + "\n";
             totalAmount += thisAmount;
         }
         //add footer lines
