@@ -6,8 +6,8 @@ class Customer {
     private final String name;
     private final Vector rentals = new Vector();
 
-    public Customer(String newname) {
-        name = newname;
+    public Customer(String newName) {
+        name = newName;
     }
 
     public void addRental(Rental arg) {
@@ -21,13 +21,13 @@ class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration enum_rentals = rentals.elements();
+        Enumeration enumRentals = rentals.elements();
         String result = "fowler.Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
-        while (enum_rentals.hasMoreElements()) {
+        while (enumRentals.hasMoreElements()) {
             double thisAmount = 0;
-            Rental each = (Rental) enum_rentals.nextElement();
+            Rental each = (Rental) enumRentals.nextElement();
             //determine amounts for each line
             thisAmount = amountFor(each);
             // add frequent renter points
@@ -56,7 +56,7 @@ class Customer {
             case Movie.NEW_RELEASE:
                 thisAmount += each.getDaysRented() * 3;
                 break;
-            case Movie.CHILDRENS:
+            case Movie.CHILDREN:
                 thisAmount += 1.5;
                 if (each.getDaysRented() > 3)
                     thisAmount += (each.getDaysRented() - 3) * 1.5;
