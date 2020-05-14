@@ -16,6 +16,26 @@ public class Movie {
         return priceCode;
     }
 
+    public double calculateCostForDays(int rentalDays) {
+        double thisAmount = 0;
+        switch (getPriceCode()) {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if (rentalDays > 2)
+                    thisAmount += (rentalDays - 2) * 1.5;
+                break;
+            case Movie.NEW_RELEASE:
+                thisAmount += rentalDays * 3;
+                break;
+            case Movie.CHILDREN:
+                thisAmount += 1.5;
+                if (rentalDays > 3)
+                    thisAmount += (rentalDays - 3) * 1.5;
+                break;
+        }
+        return thisAmount;
+    }
+
     public String getTitle() {
         return title;
     }
