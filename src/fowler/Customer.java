@@ -2,7 +2,7 @@ package fowler;
 
 import java.util.*;
 
-class Customer {
+public class Customer {
     private final String name;
     private final ArrayList<Rental> rentals = new ArrayList<>();
 
